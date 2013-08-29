@@ -12,7 +12,12 @@ else
 fi
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
-PROMPT="╭ ${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
+function virtualenv_info {
+    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+}
+local virtualenv='$(virtualenv_info)%{$reset_color%}'
+
+PROMPT="╭ ${user_host} ${current_dir} ${rvm_ruby} ${git_branch} ${virtualenv}
 ╰ %B$%b "
 RPS1="${return_code}"
 
